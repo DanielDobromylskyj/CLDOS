@@ -153,6 +153,16 @@ class OperatingSystem():
             else:
                 print("Invalide Program Name. Not Found")
 
+    def DisImg(self, location):
+        img = OS.Get_Long(location)
+
+        for row in img:
+            line = ""
+            for col in row:
+                line = line + " " + col + " "
+            print(line)
+
+
 
     def Terminal(self):
         OS.DisplayClear()
@@ -162,8 +172,16 @@ class OperatingSystem():
                 args = OS.UserInput("Args: ")
                 self.LoadApli(args)
 
+            elif command == "DisImg":
+                args = OS.UserInput("Agrs: ")
+                self.DisImg(args)
+
+
+
+
+
             elif command == "help": # Needs To Be Improved
-                print("Apli - Load Any Apli(cation) With Just Its Name\nclear - Clear Terminal")
+                print("Apli - Load Any Apli(cation) With Just Its Name\nclear - Clear Terminal\nDisImg - Give it a location and it will display stored img")
 
             elif command == "clear":
                 OS.DisplayClear()
@@ -181,3 +199,4 @@ class OperatingSystem():
 if __name__ == "__main__":
     OS = OperatingSystem(100, 50)
     OS.Terminal()
+
