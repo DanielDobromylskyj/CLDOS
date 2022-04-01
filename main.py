@@ -1,5 +1,7 @@
 # Lets Try Have This Make A "GUI" Using Symbols
 
+import os
+
 class OperatingSystem():
     def __init__(self, LongStorage_Amount, RAM_Amount):
         self.scale = ['$', '@', 'B', '%', '8', '&', 'W', 'M', '#', '*', 'o', 'a', 'h', 'k', 'b', 'd', 'p', 'q', 'w', 'm', 'Z', 'O', '0', 'Q', 'L', 'C', 'J', 'U', 'Y', 'X', 'z', 'c', 'v', 'u', 'n', 'x', 'r', 'j', 'f', 't', '/', '\\', '|', '(', ')', '1', '{', '}', '[', ']', '?', '-', '_', '+', '~', '<', '>', 'i', '!', 'l', 'I', ';', ':', ',', '"', '^', '`', "'", '.', ' ']
@@ -8,9 +10,12 @@ class OperatingSystem():
         self.Secoundary = LongStorage_Amount - 1
 
         self.RAM = []
+        self.RAM_Amount = RAM_Amount
         # 2D List Where each 2nd list is a byte: [0, 0, 0, 0, 0, 0, 0, 0]
         for i in range(RAM_Amount):
             self.RAM.append([0, 0, 0, 0, 0, 0, 0, 0])
+
+        self.commands = ["LoadApli"]
 
         # Ready Display
         self.DisplayClear()
@@ -50,7 +55,7 @@ class OperatingSystem():
             row_number += 1
 
     def DisplayClear(self):
-        for i in range(60):
+        for i in range(75):
             print("")
 
 
@@ -133,21 +138,46 @@ class OperatingSystem():
         except FileNotFoundError:
             return None
 
+    def LoadApli(self, Apli_Name):
+        try:
+            exec("from programs import " + str(Apli_Name))
+            exec("APLI = " + Apli_Name + ".PROGRAM(" + str(self.Secoundary) + ", "+ str(self.RAM_Amount) +")")
+            exec("APLI.open()")
+        except Exception as error:
+            if Apli_Name.startswith("-"):
+                if Apli_Name == "-list":
+                    files = os.listdir('programs')
+                    files.remove('__pycache__')
+                    print(files)
+
+            else:
+                print("Invalide Program Name. Not Found")
+
+
+    def Terminal(self):
+        OS.DisplayClear()
+        while True:
+            command = OS.UserInput(text=">>")
+            if command == "Apli":
+                args = OS.UserInput("Args: ")
+                self.LoadApli(args)
+
+            elif command == "help": # Needs To Be Improved
+                print("Apli - Load Any Apli(cation) With Just Its Name\nclear - Clear Terminal")
+
+            elif command == "clear":
+                OS.DisplayClear()
+
+            elif command == "": # Make Sure They Haven't Just Pressed Enter
+                pass
+            else:
+                print("Unknown Command Try 'help'")
 
 
 
 
 
 
-OS = OperatingSystem(100, 50)
-
-from programs import ImageMaker
-
-OS.UserInput(text="press enter to start demo", Return=False)
-
-img = ImageMaker.ImageMaker(OS)
-img.open()
-
-OS.DisplayImage(OS.Get_Long(3))
-
-OS.Wait()
+if __name__ == "__main__":
+    OS = OperatingSystem(100, 50)
+    OS.Terminal()
