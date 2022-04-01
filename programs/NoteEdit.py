@@ -168,49 +168,94 @@ class OperatingSystem():
                 line = line + " " + col + " "
             print(line)
 
-    def DisTxt(self, location):
-        txt = OS.Get_Long(location)
-        text = txt.split("\n")
-        for line in text:
-            print(line)
 
 
-    def Terminal(self):
-        OS.DisplayClear()
+class PROGRAM():
+    def __init__(self, Long, RAM):
+        self.OS = OperatingSystem(Long, RAM)
+
+
+        self.version = "1"
+        self.publisher = "Daniel Dobromylskyj"
+        self.Licence = "MIT"
+        self.FullName = "Note Editor Basic (No Arrows)"
+
+    def Info(self):
+        return (self.version, self.FullName, self.publisher, self.Licence)
+
+    def open(self):
+        self.OS.DisplayClear()
+
         while True:
-            command = OS.UserInput(text=">>")
-            if command == "Apli":
-                args = OS.UserInput("Args: ")
-                self.LoadApli(args)
+            AWNS = self.OS.UserInput(text="Load (Say 'None' for blank): ")
 
-            elif command == "DisImg":
-                args = OS.UserInput("Agrs: ")
-                self.DisImg(args)
-
-            elif command == "DisTxt":
-                args = OS.UserInput("Agrs: ")
-                self.DisTxt(args)
-
-
-
-            elif command == "help": # Needs To Be Improved
-                print("Apli - Load Any Apli(cation) With Just Its Name\nclear - Clear Terminal\nDisImg - Give it a location and it will display stored img")
-                print("DisTxt - Display Contents Of A Text File")
-
-            elif command == "clear":
-                OS.DisplayClear()
-
-            elif command == "": # Make Sure They Haven't Just Pressed Enter
-                pass
+            if str(AWNS) == "None":
+                TEXT = ""
+                print("New Created")
+                break
             else:
-                print("Unknown Command Try 'help'")
+                TEXT = self.OS.Get_Long(int(AWNS))
+
+
+                if TEXT == None:
+                    print("No File Found")
+                else:
+                    try:
+                        TEXT.split("\n")
+                        break
+                    except:
+                        print("Invalid Format")
+
+
+        try:
+
+            def Update(TEXT, EditingLine):
+                LINES = TEXT.split("\n")
+                line_counter = 0
+                for line in LINES:
+                    if line_counter == EditingLine:
+                        line = "> " + str(line) + " <"
+
+                    line_counter += 1
+                    print(line)
+
+                changed = input("Line: ")
+                if changed == "":
+                    pass
+                else:
+                    try:
+                        LINES.pop(EditingLine)
+                        LINES.insert(EditingLine, changed)
+                    except:
+                        LINES.append(changed)
+
+                new_text = ""
+                for line in LINES:
+                    new_text = new_text + str(line) + "\n"
+
+                new_text = new_text[:-1]
+
+                return new_text
 
 
 
 
 
+            Line = 0
+            while True:
+                self.OS.DisplayClear()
+                TEXT = Update(TEXT, Line)
+                option = self.OS.UserInput("'moveLINENUMBER' OR press 'enter' to continue OR 'save' (or quit)")
 
-if __name__ == "__main__":
-    OS = OperatingSystem(100, 50)
-    OS.Terminal()
+                if option.startswith("move"):
+                    Line = option[4:]
+                elif option == "save":
+                    self.OS.DisplayClear()
+                    location = self.OS.UserInput(text="Location: ")
+                    self.OS.Store_Long(location, TEXT, Type="text")
+                    break
+                else:
+                    pass
 
+        except Exception as e:
+            print(e)
