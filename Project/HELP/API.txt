@@ -1,0 +1,75 @@
+---- CLDOS API ----
+
+To Use Any Sub Cat You Must Initialise It First. Aka:
+
+<><><>
+from api import file_access
+f = file_access()
+<><><>
+
+--- CLDOS API ---
+
+file_access Commands:
+>file_access()
+
+>> write_to_file(<file>, <Data>) <<
+
+Example:
+<><><>
+from api import file_access
+f = file_access()
+f.write_to_file("cldos/program files/MyProgram/AFile", "This Text Was Changed By Code!")
+<><><>
+
+Its Just To Write To A File. It Will Replace All Stored Data In The File And You Cant Undo It So Be Careful.
+
+--- CLDOS API ---
+
+terminal Commands:
+>terminal()
+
+>> mkdir(<PathToDir>) <<
+
+Example:
+<><><>
+from api import terminal
+t = terterminal()
+t.mkdir("cldos/home/MyDirectory")
+<><><>
+
+It Creates A Directory (Folder) That Files Can Be Put In. Useful To Keep Things Tidy
+
+
+>> mkfile(<PathToFile>) <<
+
+Example:
+<><><>
+from api import terminal
+t = terterminal()
+t.mkfile("cldos/home/MyDirectory/AFile")
+<><><>
+
+Makes A Plain Empty File
+
+>> rmdir(<PathToDir>) <<
+
+Example:
+<><><>
+from api import terminal
+t = terterminal()
+t.rmdir("cldos/home/MyDirectory")
+<><><>
+
+It Removes A Directory (Folder) And All Files Inside
+
+
+>> rmfile(<PathToFile>) <<
+
+Example:
+<><><>
+from api import terminal
+t = terterminal()
+t.rmfile("cldos/home/MyDirectory/AFile")
+<><><>
+
+It Removes A File.

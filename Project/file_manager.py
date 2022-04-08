@@ -85,7 +85,7 @@ def Edit_File(path, data):
     for file in range(int(Amount)):
         data = storage.read(file)[1]
         AllLines = data.split("\n")
-        if AllLines[0] == path:
+        if AllLines[0] == path + ".file":
             storage.write(file, WriteData)
             return [True, path + " Edited"]
 

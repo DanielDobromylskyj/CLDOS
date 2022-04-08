@@ -6,5 +6,6 @@ import command
 Setup = storage.storage()
 if Setup:
     command.SetupFiles()
-
-terminal.open()
+    input("Please Restart OS / Computer")
+else:
+    terminal.open()

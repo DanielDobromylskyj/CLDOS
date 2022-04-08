@@ -49,7 +49,7 @@ def mkdir(pathname):
 
 def mkfile(pathname):
     path, name = GetPathInfo(pathname)
-    print(file_manager.Create_File(path, name)[1])
+    print(str(file_manager.Create_File(path, name)[1]))
 
 def rmdir(path):
     print(file_manager.Delete_Folder(path)[1])

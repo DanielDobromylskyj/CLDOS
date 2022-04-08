@@ -8,7 +8,9 @@ def help():
     print("mkfile, path with name - Makes File")
     print("rmdir, path - Remove A Dir And Contents")
     print("rmfile, path - Remove A File")
+    print("rdfile, path - Print Contents Of File")
     print("imp, file path - Runs A External File")
+
 
 def open():
     commands = ["seek", "mkdir", "mkfile", "rmdir", "rmfile", "rdfile", "imp"]

@@ -1,0 +1,12 @@
+Code Your Program As A Python File In The Windows File That Contains The api.py File.
+Code Using Python And The API Provided. Basic Python Libarys Like 'time' That Are Preinstalled Can Be Used. However, Libarys Like 'tkinter/os/system' Will Not Work As Intended And Are Not Recommended.
+
+When Finished open The api.py File.
+
+It Will Say What Compiler It Is (For This We Will Use Windows)
+
+The First Input Is Where You Want Your Program To Be Stored In Cldos. We Recommend Putting Your File In The "cldos/program files/" directory.
+
+The Secound Input Is For The Name/Path Of Your Program.py File In Windows.
+
+it Should All Compile And Can Be Run Using The 'imp' Function In The Terminal
