@@ -6,6 +6,10 @@ def seek(path):
     for Object in file_manager.Open_Folder(path)[1]:
         print(Object)
 
+def seek_silent(path):
+    return file_manager.Open_Folder(path)[1]
+
+
 def move(location):
     pass
 
@@ -37,9 +41,8 @@ def SetupFiles():
     mkfile("cldos/program files/test")
     mkfile("cldos/home/Welcome")
 
-    file_manager.Edit_File("cldos/program files/test.file", 'print("External File Is Working")\nprint("Multipule Lines Are Work")')
-    file_manager.Edit_File("cldos/home/Welcome.file", "Hi! I hope you will enjoy messing around with this OS if you can really call it that! :)")
-
+    file_manager.Edit_File("cldos/program files/test", 'print("External File Is Working")\nprint("Multipule Lines Are Work")')
+    file_manager.Edit_File("cldos/home/Welcome", "Hi! I hope you will enjoy messing around with this OS if you can really call it that! :)")
     print("Complete! Booting Into Terminal.")
 
 def mkdir(pathname):

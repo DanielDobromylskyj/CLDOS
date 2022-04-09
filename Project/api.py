@@ -5,6 +5,16 @@ class file_access():
     def write_to_file(self, file, data):
         file_manager.Edit_File(file, data)
 
+    def read_file(self, file):
+        return file_manager.Open_File(file)[1]
+
+    def is_file(self, filepath):
+        path, name = command.GetPathInfo(filepath)
+        files = command.seek_silent(path)
+        if name + ".file" in files:
+            return True
+        return False
+
 
 class terminal():
     def mkdir(self, pathname):

@@ -81,7 +81,7 @@ def Open_Folder(path):
 
 def Edit_File(path, data):
     Amount = storage.read("Meta")[1]
-    WriteData = path + "\n" + data
+    WriteData = path + ".file\n" + data
     for file in range(int(Amount)):
         data = storage.read(file)[1]
         AllLines = data.split("\n")
