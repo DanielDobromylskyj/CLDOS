@@ -10,10 +10,11 @@ def help():
     print("rmfile, path - Remove A File")
     print("rdfile, path - Print Contents Of File")
     print("imp, file path - Runs A External File")
+    print("ping, ip - Pings Ip on port 12255")
 
 
 def open():
-    commands = ["seek", "mkdir", "mkfile", "rmdir", "rmfile", "rdfile", "imp"]
+    commands = ["seek", "mkdir", "mkfile", "rmdir", "rmfile", "rdfile", "imp", "ping"]
     print("> CLDOS - Comand Line Driven Operating System <")
     print("")
     print("Copyright @ Daniel Dobromylskyj")

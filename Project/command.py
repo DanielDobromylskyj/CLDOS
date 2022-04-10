@@ -1,4 +1,5 @@
 import file_manager
+import network
 
 # Viewing / Moving
 
@@ -62,6 +63,38 @@ def rmfile(path):
 
 def rdfile(path):
     print(file_manager.Open_File(path)[1])
+
+# Networking
+
+
+
+
+
+def ping(IP):
+    net = network.Client()
+    net.Setup(IP, 12255)
+    net.Connect()
+    net.Send("ping")
+    print("Got Back: ", net.recv())
+
+
+
+def PRSU():
+    def con_re(server, socketnumber):
+        try:
+            while True:
+                data = server.recv(socketnumber)
+                if data == "ping":
+                    server.Send(socketnumber, "pong")
+        except Exception as e:
+            print("Error: ", e)
+
+    net = network.Server()
+    net.Setup(12255)
+    net.Run(con_re)
+
+
+
 
 
 if __name__ == "__main__":
